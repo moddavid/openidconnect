@@ -144,7 +144,7 @@ class SessionVerifier {
 			$this->session->remove('oca.openid-connect.refresh-token');
 			$this->session->remove('oca.openid-connect.id-token');
 			$this->logger->debug('OIDC Logout: ending session ' . $accessToken . ' id: ' . $idToken);
-			$this->client->signOut($idToken, null);
+			$this->client->signOut($idToken, $this->client->getRedirectURL());
 		} catch (OpenIDConnectClientException $ex) {
 			$this->logger->logException($ex);
 		}
